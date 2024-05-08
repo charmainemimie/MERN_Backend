@@ -1,40 +1,45 @@
-const express=require('express')
-const mongoose=require('mongoose')
-require('dotenv').config();
-const cors =require('cors')
-
+const express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config();
+const cors = require("cors");
 
 //express setup
-const app=express()
+const app = express();
 
-
+//START ADDING MIDDLEWARE
 // cors
-app.use(cors('* '))
+app.use(cors("* "));
+
+//middleware for json-for all requests that send data to the server
+app.use(express.json());
+
+// middleware to get the path and method for the request
+app.use((req, res, next) => {
+  console.log("path = " + req.path, "and method = " + req.method);
+  next(); //to go to the next fct
+});
+
 //the workouts routes
-const workoutRoutes=require('./routes/workoutRoutes')
+const workoutRoutes = require("./routes/workoutRoutes");
 
 //connect to db
-mongoose.connect(process.env.MONGODB_ONLINE) //returns a promise
-    .then(()=>{
-        //listen for requests
-        app.listen(PORT, () => {
-            console.log(`connected to db & listening on port ${PORT}...`);
-          });
-    })
-    .catch((error)=>{
-        console.log(error)
-    })
+mongoose
+  .connect(process.env.MONGODB_ONLINE) //returns a promise
+  .then(() => {
+    //listen for requests
+    app.listen(PORT, () => {
+      console.log(`connected to db & listening on port ${PORT}...`);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 
 const PORT = process.env.PORT || 4000; // Use the port from the environment variable or default to 400
 
-//START ADDING MIDDLEWARE
-//middleware for json-for all requests that send data to the server
-app.use(express.json())
-
-
 // Route: Define a simple GET route for the root path
-app.get('/', (req, res) => {
-    res.send(`
+app.get("/", (req, res) => {
+  res.send(`
     <!DOCTYPE html>
     <html lang="en">
     <head>
@@ -100,17 +105,8 @@ app.get('/', (req, res) => {
     </body>
     </html>  
     `);
-  });
+});
 
-
-// middleware to get the path and method for the request
-app.use((req,res,next)=>{
-    console.log('path = '+req.path, 'and method = '+req.method)
-    next() //to go to the next fct
-})
-  
 //middleware to use the routes
-app.use('/api/workouts', workoutRoutes)
+app.use("/api/workouts", workoutRoutes);
 //END OF MIDDLEWARE
-
-
