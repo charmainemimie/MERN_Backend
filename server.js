@@ -40,7 +40,7 @@ app.get('/', (req, res) => {
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Ninjas Project</title>
+      <title>Workout MERN Project</title>
       <style>
         body {
           font-family: Arial, sans-serif;
@@ -90,7 +90,7 @@ app.get('/', (req, res) => {
       </style>
     </head>
     <body>
-      <h1>Welcome to the Ninjas API!</h1>
+      <h1>Welcome to the Workouts MERN API!</h1>
       <p>We collect a large amount of data from our customers with their consent, see bottom right for contact details</p>
       <div class="developer-info">
         <p>Developed by Charmaine S Mangorima</p>
