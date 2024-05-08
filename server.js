@@ -1,11 +1,23 @@
 const express=require('express')
-
+const mongoose=require('mongoose')
 require('dotenv').config();
 //express setup
 const app=express()
 
 //the workouts routes
 const workoutRoutes=require('./routes/workouts')
+
+//connect to db
+mongoose.connect(process.env.MONGODB_ONLINE) //returns a promise
+    .then(()=>{
+        //listen for requests
+        app.listen(PORT, () => {
+            console.log(`connected to db & listening on port ${PORT}...`);
+          });
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
 
 const PORT = process.env.PORT || 4000; // Use the port from the environment variable or default to 400
 
@@ -24,6 +36,3 @@ app.use('/api/workouts', workoutRoutes)
 //END OF MIDDLEWARE
 
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}...`);
-});
