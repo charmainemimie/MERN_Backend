@@ -90,7 +90,7 @@ app.get('/', (req, res) => {
       </style>
     </head>
     <body>
-      <h1>Welcome to the Workouts MERN API!</h1>
+      <h1>Welcome to the Workouts MERN Stack API!</h1>
       <p>We collect a large amount of data from our customers with their consent, see bottom right for contact details</p>
       <div class="developer-info">
         <p>Developed by Charmaine S Mangorima</p>
