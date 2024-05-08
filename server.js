@@ -5,7 +5,7 @@ require('dotenv').config();
 const app=express()
 
 //the workouts routes
-const workoutRoutes=require('./routes/workouts')
+const workoutRoutes=require('./routes/workoutRoutes')
 
 //connect to db
 mongoose.connect(process.env.MONGODB_ONLINE) //returns a promise
