@@ -8,7 +8,7 @@ const app = express();
 
 //START ADDING MIDDLEWARE
 // cors
-app.use(cors("* "));
+app.use(cors());
 
 //middleware for json-for all requests that send data to the server
 app.use(express.json());
