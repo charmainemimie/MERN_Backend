@@ -22,6 +22,9 @@ app.use((req, res, next) => {
 //the workouts routes
 const workoutRoutes = require("./routes/workoutRoutes");
 
+
+//the user routes
+const userRoutes = require("./routes/userRoutes");
 //connect to db
 mongoose
   .connect(process.env.MONGODB_ONLINE) //returns a promise
@@ -109,4 +112,6 @@ app.get("/", (req, res) => {
 
 //middleware to use the routes
 app.use("/api/workouts", workoutRoutes);
+
+app.use("/api/user", userRoutes);
 //END OF MIDDLEWARE
