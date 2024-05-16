@@ -25,6 +25,7 @@ const workoutRoutes = require("./routes/workoutRoutes");
 
 //the user routes
 const userRoutes = require("./routes/userRoutes");
+
 //connect to db
 mongoose
   .connect(process.env.MONGODB_ONLINE) //returns a promise
