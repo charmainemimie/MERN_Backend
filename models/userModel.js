@@ -17,7 +17,8 @@ const userSchema=new Schema({
 },{timestamps:true})
 
 //static signup method
-userSchema.statics.signup=async (email,password)=>{
+//when using this keyword you dont use arrow functions
+userSchema.statics.signup=async function (email,password){
     const exists=await this.findOne({email})
 
     if(exists){
@@ -25,7 +26,15 @@ userSchema.statics.signup=async (email,password)=>{
     }
 
     //hashing password using bcrypt
-    
+    const salt = await bcrypt.genSalt(10) //10 is the number of iterations to create the salt
+    const hash = await bcrypt.hash(password,salt)
+
+    const user=await this.create({
+         email,
+         password:hash
+    })
+
+    return user
 }
 
 module.exports=mongoose.model('User',userSchema)
