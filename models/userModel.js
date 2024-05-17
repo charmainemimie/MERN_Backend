@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 const Schema = mongoose.Schema
-const bcrypt=require('bcrypt')
+const bcrypt=require('bcryptjs')
 
 //SCHEMA -takes 2 args--- define a document structure and set timestanps
 const userSchema=new Schema({
